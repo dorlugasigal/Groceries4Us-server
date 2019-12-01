@@ -7,7 +7,7 @@ const groceriesSchema = new Schema({
     required: true
   },
   name: {
-    type: String
+    type: Array
   }
 }, {
   timestamps: true,
