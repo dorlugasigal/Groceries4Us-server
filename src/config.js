@@ -39,7 +39,7 @@ const config = {
   test: { },
   development: {
     mongo: {
-      uri: 'mongodb://localhost/groceries-4-us-server-dev',
+      uri: 'mongodb+srv://LugasiGalFamily:@Aa123456@shoppingcluster-iknid.mongodb.net/test?retryWrites=true&w=majority',
       options: {
         debug: true
       }
@@ -49,7 +49,7 @@ const config = {
     ip: process.env.IP || undefined,
     port: process.env.PORT || 8080,
     mongo: {
-      uri: process.env.MONGODB_URI || 'mongodb://localhost/groceries-4-us-server'
+      uri: process.env.MONGODB_URI || 'mongodb+srv://LugasiGalFamily:@Aa123456@shoppingcluster-iknid.mongodb.net/test?retryWrites=true&w=majority'
     }
   }
 }
