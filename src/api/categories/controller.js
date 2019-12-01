@@ -1,0 +1,46 @@
+import { success, notFound, authorOrAdmin } from '../../services/response/'
+import { Categories } from '.'
+
+export const create = ({ user, bodymen: { body } }, res, next) =>
+  Categories.create({ ...body, addedBy: user })
+    .then((categories) => categories.view(true))
+    .then(success(res, 201))
+    .catch(next)
+
+export const index = ({ querymen: { query, select, cursor } }, res, next) =>
+  Categories.count(query)
+    .then(count => Categories.find(query, select, cursor)
+      .populate('addedBy')
+      .then((categories) => ({
+        count,
+        rows: categories.map((categories) => categories.view())
+      }))
+    )
+    .then(success(res))
+    .catch(next)
+
+export const show = ({ params }, res, next) =>
+  Categories.findById(params.id)
+    .populate('addedBy')
+    .then(notFound(res))
+    .then((categories) => categories ? categories.view() : null)
+    .then(success(res))
+    .catch(next)
+
+export const update = ({ user, bodymen: { body }, params }, res, next) =>
+  Categories.findById(params.id)
+    .populate('addedBy')
+    .then(notFound(res))
+    .then(authorOrAdmin(res, user, 'addedBy'))
+    .then((categories) => categories ? Object.assign(categories, body).save() : null)
+    .then((categories) => categories ? categories.view(true) : null)
+    .then(success(res))
+    .catch(next)
+
+export const destroy = ({ user, params }, res, next) =>
+  Categories.findById(params.id)
+    .then(notFound(res))
+    .then(authorOrAdmin(res, user, 'addedBy'))
+    .then((categories) => categories ? categories.remove() : null)
+    .then(success(res, 204))
+    .catch(next)

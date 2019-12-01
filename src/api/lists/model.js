@@ -1,15 +1,12 @@
 import mongoose, { Schema } from 'mongoose'
 
-const groceriesSchema = new Schema({
-  addedBy: {
-    type: Schema.ObjectId,
-    ref: 'User',
-    required: true
-  },
-  name: {
+const listsSchema = new Schema({
+  title: {
     type: String
   },
-  category: String
+  personnel: {
+    type: String
+  }
 }, {
   timestamps: true,
   toJSON: {
@@ -18,13 +15,13 @@ const groceriesSchema = new Schema({
   }
 })
 
-groceriesSchema.methods = {
+listsSchema.methods = {
   view (full) {
     const view = {
       // simple view
       id: this.id,
-      addedBy: this.addedBy.view(full),
-      name: this.name,
+      title: this.title,
+      personnel: this.personnel,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
@@ -36,7 +33,7 @@ groceriesSchema.methods = {
   }
 }
 
-const model = mongoose.model('Groceries', groceriesSchema)
+const model = mongoose.model('Lists', listsSchema)
 
 export const schema = model.schema
 export default model
