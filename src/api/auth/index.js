@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { login } from './controller'
+import { login, forgetPassword } from './controller'
 import { password, master, facebook, google } from '../../services/passport'
 
 const router = new Router()
@@ -18,6 +18,10 @@ const router = new Router()
 router.post('/',
   password(),
   login)
+
+router.post('/forget', (req, res, next) => {
+  forgetPassword(req, res, next)
+})
 
 /**
  * @api {post} /auth/facebook Authenticate with Facebook

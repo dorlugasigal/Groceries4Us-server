@@ -4,6 +4,7 @@ import auth from './auth'
 import groceries from './groceries'
 import categories from './categories'
 import lists from './lists'
+import forgetTokens from './ForgetTokens'
 
 const router = new Router()
 
@@ -35,5 +36,6 @@ router.use('/auth', auth)
 router.use('/groceries', groceries)
 router.use('/categories', categories)
 router.use('/lists', lists)
+router.use('/ForgetTokens', forgetTokens)
 
 export default router
