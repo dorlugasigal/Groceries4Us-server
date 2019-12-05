@@ -1,3 +1,5 @@
+import { truncateSync } from 'fs'
+
 var nodemailer = require('nodemailer')
 
 var transporter = nodemailer.createTransport({
@@ -8,19 +10,26 @@ var transporter = nodemailer.createTransport({
   }
 })
 
-export const sendMail = (target) => {
+export const sendMail = (target, success, error) => {
   const {email, token} = target
   var mailOptions = {
     from: 'groceries4us.help@gmail.com',
     to: email,
     subject: 'Forget your password at Groceries4Us?',
-    text: `Your reset code is: ${token} \nif you didn't forgot your password, ignore this mail.\n\nFrom the creators of Groceries4Us`
+    text: `Your reset code is: ${token} 
+for your information, this code is valid for 30 minutes
+if you didn't forgot your password, ignore this mail.
+    
+From the creators of Groceries4Us`
   }
-  transporter.sendMail(mailOptions, (error, info) => {
+  var ret = transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log(error)
+      error(false)
     } else {
       console.log('Email sent: ' + info.response)
+      success(true)
     }
   })
+  return ret
 }

@@ -19,9 +19,8 @@ router.post('/',
   password(),
   login)
 
-router.post('/forget', (req, res, next) => {
-  forgetPassword(req, res, next)
-})
+router.post('/forget',
+  forgetPassword)
 
 /**
  * @api {post} /auth/facebook Authenticate with Facebook
