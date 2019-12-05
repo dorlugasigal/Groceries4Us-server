@@ -72,6 +72,20 @@ test('POST /auth 401 (master) - missing auth', async () => {
   expect(status).toBe(401)
 })
 
+test('POST /auth/forget 200 - success ', async () => {
+  const { status } = await request(app())
+    .post(apiRoot + '/forget')
+    .send({ email: 'a@a.com' })
+  expect(status).toBe(200)
+})
+
+test('POST /auth/forget 200 - error sending mail ', async () => {
+  const { status } = await request(app())
+    .post(apiRoot + '/forget')
+    .send({ email: '?' })
+  expect(status).toBe(500)
+})
+
 test('POST /auth/facebook 201', async () => {
   stub(facebook, 'getUser').value(() => Promise.resolve({
     service: 'facebook',

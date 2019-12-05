@@ -16,7 +16,6 @@ export const forgetPassword = async (req, res, next) => {
   target.email = email
   target.token = Math.floor((Math.random() * 1000000) + 1).toString()
   target.expiration = moment(Date.now()).add(30, 'm').toDate()
-
   ForgetTokens.create(target)
     .then((forgetTokens) => forgetTokens.view(true))
     .catch(next)

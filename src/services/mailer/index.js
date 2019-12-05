@@ -22,10 +22,10 @@ if you didn't forgot your password, ignore this mail.
     
 From the creators of Groceries4Us`
   }
-  var ret = transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log(error)
-      error(false)
+  var ret = transporter.sendMail(mailOptions, (err, info) => {
+    if (err) {
+      console.log(err)
+      error('error when sending mail')
     } else {
       console.log('Email sent: ' + info.response)
       success(true)
