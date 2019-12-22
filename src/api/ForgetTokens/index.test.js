@@ -8,7 +8,7 @@ const app = () => express(apiRoot, routes)
 let forgetTokens
 
 beforeEach(async () => {
-  forgetTokens = await ForgetTokens.create({})
+  forgetTokens = await ForgetTokens.create({ email: 'aaa@gmail.com', token: '123456' })
 })
 
 test('POST /ForgetTokens 201', async () => {
@@ -20,12 +20,15 @@ test('POST /ForgetTokens 201', async () => {
   expect(body.email).toEqual('test')
 })
 
-test('GET /ForgetTokens/:id 200', async () => {
+test('GET /ForgetTokens/:email/:token 200', async () => {
+  console.log(`${apiRoot}/${forgetTokens.email}/${forgetTokens.token}`)
+
+  console.log(forgetTokens)
   const { status, body } = await request(app())
-    .get(`${apiRoot}/${forgetTokens.id}`)
+    .get(`${apiRoot}/${forgetTokens.email}/${forgetTokens.token}`)
   expect(status).toBe(200)
   expect(typeof body).toEqual('object')
-  expect(body.id).toEqual(forgetTokens.id)
+  expect(body.email).toEqual(forgetTokens.email)
 })
 
 test('GET /ForgetTokens/:id 404', async () => {
@@ -36,7 +39,7 @@ test('GET /ForgetTokens/:id 404', async () => {
 
 test('DELETE /ForgetTokens/:id 204', async () => {
   const { status } = await request(app())
-    .delete(`${apiRoot}/${forgetTokens.id}`)
+    .delete(`${apiRoot}/${forgetTokens._id}`)
   expect(status).toBe(204)
 })
 
