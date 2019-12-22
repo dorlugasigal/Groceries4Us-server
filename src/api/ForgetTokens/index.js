@@ -28,7 +28,7 @@ router.post('/',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Forget tokens not found.
  */
-router.get('/:id',
+router.get('/:email/:token',
   show)
 
 /**

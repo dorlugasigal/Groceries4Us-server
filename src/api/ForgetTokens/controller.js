@@ -11,7 +11,7 @@ export const create = ({ bodymen: { body } }, res, next) => {
 }
 
 export const show = ({ params }, res, next) =>
-  ForgetTokens.findById(params.id)
+  ForgetTokens.findOne({email: params.email, token: params.token})
     .then(notFound(res))
     .then((forgetTokens) => forgetTokens ? forgetTokens.view() : null)
     .then(success(res))
