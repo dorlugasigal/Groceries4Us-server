@@ -10,15 +10,12 @@ export const create = ({ bodymen: { body } }, res, next) => {
     .catch(next)
 }
 
-export const show = ({ params }, res, next) => {
-  console.log('I AM HERE')
-  ForgetTokens.find().then(console.log)
-  return ForgetTokens.findOne({email: params.email, token: params.token})
+export const show = ({ params }, res, next) =>
+  ForgetTokens.findOne({email: params.email, token: params.token})
     .then(notFound(res))
     .then((forgetTokens) => forgetTokens ? forgetTokens.view() : null)
     .then(success(res))
     .catch(next)
-}
 
 export const destroy = ({ params }, res, next) =>
   ForgetTokens.findById(params.id)

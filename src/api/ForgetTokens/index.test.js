@@ -21,9 +21,6 @@ test('POST /ForgetTokens 201', async () => {
 })
 
 test('GET /ForgetTokens/:email/:token 200', async () => {
-  console.log(`${apiRoot}/${forgetTokens.email}/${forgetTokens.token}`)
-
-  console.log(forgetTokens)
   const { status, body } = await request(app())
     .get(`${apiRoot}/${forgetTokens.email}/${forgetTokens.token}`)
   expect(status).toBe(200)
