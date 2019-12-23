@@ -20,6 +20,14 @@ export const show = ({ params }, res, next) =>
     .then(success(res))
     .catch(next)
 
+export const getUserByEmail = (email, res, next) => {
+  return User.findOne({email})
+    .then(notFound(res))
+    .then((user) => user ? user.view() : null)
+    .then(res)
+    .catch(next)
+}
+
 export const showMe = ({ user }, res) =>
   res.json(user.view(true))
 

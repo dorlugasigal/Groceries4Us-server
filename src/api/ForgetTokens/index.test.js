@@ -2,13 +2,16 @@ import request from 'supertest'
 import { apiRoot } from '../../config'
 import express from '../../services/express'
 import routes, { ForgetTokens } from '.'
+import {User} from '../user/index'
 
 const app = () => express(apiRoot, routes)
 
 let forgetTokens
+let mockUser
 
 beforeEach(async () => {
-  forgetTokens = await ForgetTokens.create({ email: 'aaa@gmail.com', token: '123456' })
+  mockUser = await User.create({name: 'dor lugasi', password: '123456', email: 'dorlugasigal@gmail.com'})
+  forgetTokens = await ForgetTokens.create({ email: 'dorlugasigal@gmail.com', token: '613344' })
 })
 
 test('POST /ForgetTokens 201', async () => {
@@ -20,12 +23,12 @@ test('POST /ForgetTokens 201', async () => {
   expect(body.email).toEqual('test')
 })
 
-test('GET /ForgetTokens/:email/:token 200', async () => {
+test('GET /ForgetTokens/:email/:token 201', async () => {
   const { status, body } = await request(app())
     .get(`${apiRoot}/${forgetTokens.email}/${forgetTokens.token}`)
-  expect(status).toBe(200)
+  expect(status).toBe(201)
   expect(typeof body).toEqual('object')
-  expect(body.email).toEqual(forgetTokens.email)
+  expect(body.user.email).toEqual(forgetTokens.email)
 })
 
 test('GET /ForgetTokens/:id 404', async () => {
