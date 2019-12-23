@@ -21,14 +21,10 @@ export const show = ({ params }, res, next) =>
     .then(notFound(res))
     .then((forgetTokens) => forgetTokens ? forgetTokens.view() : null)
     .then(() => {
-      console.log('IM HERE')
       getUserByEmail(params, res, next)
         .then(found => {
-          console.log('NOW HERE')
-          console.log(found)
           sign(found.id)
             .then((token) => {
-              console.log('AND NOW HERE')
               found.email = params.email
               return ({ token, user: found })
             })
