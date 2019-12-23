@@ -29,8 +29,20 @@ test('GET /ForgetTokens/:email/:token 201', async () => {
   expect(status).toBe(201)
   expect(typeof body).toEqual('object')
   expect(body.user.email).toEqual(forgetTokens.email)
+  expect(body).toHaveProperty('token')
 })
 
+test('GET /ForgetTokens/:email/no token 404', async () => {
+  const { status, body } = await request(app())
+    .get(`${apiRoot}/${forgetTokens.email}/`)
+  expect(status).toBe(404)
+})
+
+test('GET /ForgetTokens/:email/:token 404', async () => {
+  const { status, body } = await request(app())
+    .get(`${apiRoot}/aaaaaa@gmail.com/123456`)
+  expect(status).toBe(404)
+})
 test('GET /ForgetTokens/:id 404', async () => {
   const { status } = await request(app())
     .get(apiRoot + '/123456789098765432123456')

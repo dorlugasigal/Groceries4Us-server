@@ -20,16 +20,18 @@ export const show = ({ params }, res, next) =>
   ForgetTokens.findOne({email: params.email, token: params.token})
     .then(notFound(res))
     .then((forgetTokens) => forgetTokens ? forgetTokens.view() : null)
-    .then(() => {
-      getUserByEmail(params, res, next)
-        .then(found => {
-          sign(found.id)
-            .then((token) => {
-              found.email = params.email
-              return ({ token, user: found })
-            })
-            .then(success(res, 201))
-        })
+    .then((x) => {
+      if (x) {
+        getUserByEmail(params, res, next)
+          .then(found => {
+            sign(found.id)
+              .then((token) => {
+                found.email = params.email
+                return ({ token, user: found })
+              })
+              .then(success(res, 201))
+          })
+      }
     })
     .catch(next)
 
