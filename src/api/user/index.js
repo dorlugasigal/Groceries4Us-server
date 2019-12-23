@@ -103,6 +103,22 @@ router.put('/:id/password',
   updatePassword)
 
 /**
+ * @api {put} /users/:id/passwordForget Update password
+ * @apiName UpdatePassword
+ * @apiGroup User
+ * @apiHeader {String} Authorization Basic authorization with email and password.
+ * @apiParam {String{6..}} password User's new password.
+ * @apiSuccess (Success 201) {Object} user User's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 401 Current user access only.
+ * @apiError 404 User not found.
+ */
+router.put('/:id/passwordForget',
+  token({ required: true }),
+  body({ password }),
+  updatePassword)
+
+/**
  * @api {delete} /users/:id Delete user
  * @apiName DeleteUser
  * @apiGroup User

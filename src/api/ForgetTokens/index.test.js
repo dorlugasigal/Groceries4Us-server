@@ -7,10 +7,9 @@ import {User} from '../user/index'
 const app = () => express(apiRoot, routes)
 
 let forgetTokens
-let mockUser
 
 beforeEach(async () => {
-  mockUser = await User.create({name: 'dor lugasi', password: '123456', email: 'dorlugasigal@gmail.com'})
+  await User.create({name: 'dor lugasi', password: '123456', email: 'dorlugasigal@gmail.com'})
   forgetTokens = await ForgetTokens.create({ email: 'dorlugasigal@gmail.com', token: '613344' })
 })
 
@@ -33,13 +32,13 @@ test('GET /ForgetTokens/:email/:token 201', async () => {
 })
 
 test('GET /ForgetTokens/:email/no token 404', async () => {
-  const { status, body } = await request(app())
+  const { status } = await request(app())
     .get(`${apiRoot}/${forgetTokens.email}/`)
   expect(status).toBe(404)
 })
 
 test('GET /ForgetTokens/:email/:token 404', async () => {
-  const { status, body } = await request(app())
+  const { status } = await request(app())
     .get(`${apiRoot}/aaaaaa@gmail.com/123456`)
   expect(status).toBe(404)
 })
