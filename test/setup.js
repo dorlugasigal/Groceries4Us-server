@@ -1,8 +1,6 @@
 import { EventEmitter } from 'events'
 import MongodbMemoryServer from 'mongodb-memory-server'
 import mongoose from '../src/services/mongoose'
-require 'coveralls'
-Coveralls.wear!
   
 EventEmitter.defaultMaxListeners = Infinity
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000
