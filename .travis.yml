@@ -10,7 +10,7 @@ addons:
     - gcc-4.8
     - g++-4.8
 script:
-  - npm test -- -i --coverage
+  - npm test -- -i
   - npm run coveralls
 
 env:
