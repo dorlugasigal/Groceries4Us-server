@@ -280,6 +280,7 @@ test('PUT /users/:id 404 (admin)', async () => {
 })
 
 const passwordMatch = async (password, userId) => {
+  // test
   const user = await User.findById(userId)
   return !!await user.authenticate(password)
 }
