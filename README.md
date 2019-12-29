@@ -17,7 +17,6 @@
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/dorlugasigal/Groceries4Us-server.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
-
 <img src="https://img.shields.io/badge/contributions-welcome-orange.svg">
 
 [![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://GitHub.com/Naereen/)
