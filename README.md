@@ -8,6 +8,7 @@
 <h3 align="center">Groceries4Us Server Project</h3>
 
 <div align="center">
+
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![Build Status](https://travis-ci.com/dorlugasigal/Groceries4Us-server.svg?branch=master)](https://travis-ci.com/dorlugasigal/Groceries4Us-server)
 [![Coverage Status](https://coveralls.io/repos/github/dorlugasigal/Groceries4Us-server/badge.svg?branch=master)](https://coveralls.io/github/dorlugasigal/Groceries4Us-server?branch=master)
@@ -15,6 +16,8 @@
 [![GitHub Issues](https://img.shields.io/github/issues/dorlugasigal/Groceries4Us-server.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/dorlugasigal/Groceries4Us-server.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
+
+
 <img src="https://img.shields.io/badge/contributions-welcome-orange.svg">
 
 [![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://GitHub.com/Naereen/)
