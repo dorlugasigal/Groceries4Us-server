@@ -8,7 +8,6 @@
 <h3 align="center">Groceries4Us Server Project</h3>
 
 <div align="center">
-[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![Build Status](https://travis-ci.com/dorlugasigal/Groceries4Us-server.svg?branch=master)](https://travis-ci.com/dorlugasigal/Groceries4Us-server)
 [![Coverage Status](https://coveralls.io/repos/github/dorlugasigal/Groceries4Us-server/badge.svg?branch=master)](https://coveralls.io/github/dorlugasigal/Groceries4Us-server?branch=master)
