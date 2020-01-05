@@ -12,7 +12,7 @@ let userSession, lists
 beforeEach(async () => {
   const user = await User.create({ email: 'a@a.com', password: '123456' })
   userSession = signSync(user.id)
-  lists = await Lists.create({})
+  lists = await Lists.create({personell: [user.id]})
 })
 
 test('POST /lists 201 (user)', async () => {

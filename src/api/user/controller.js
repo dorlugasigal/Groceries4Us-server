@@ -1,6 +1,7 @@
 import { success, notFound } from '../../services/response/'
 import { User } from '.'
 import { sign } from '../../services/jwt'
+import { List } from '../lists/model'
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   User.count(query)
@@ -12,6 +13,36 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
     )
     .then(success(res))
     .catch(next)
+
+export const showLists = ({ params }, res, next) => {
+  List.find(
+    {
+      $lookup:
+        {
+          from: 'lists',
+          localField: params.id,
+          foreignField: 'personnel',
+          as: 'lists'
+        }
+    }
+  )
+    .then(() => {
+      console.log('1111')
+      notFound(res)
+    })
+    .then((user) => {
+      console.log('2222')
+      return user ? user.view() : null
+    })
+    .then(() => {
+      console.log('3333')
+      success(res)
+    })
+    .catch((err) => {
+      console.log(err)
+      next(err)
+    })
+}
 
 export const show = ({ params }, res, next) =>
   User.findById(params.id)

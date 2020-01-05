@@ -3,10 +3,10 @@ import { masterKey, apiRoot } from '../../config'
 import { signSync } from '../../services/jwt'
 import express from '../../services/express'
 import routes, { User } from '.'
-
+import { Lists } from '../lists'
 const app = () => express(apiRoot, routes)
 
-let user1, user2, admin, session1, session2, adminSession
+let user1, user2, admin, session1, session2, adminSession, lists
 
 beforeEach(async () => {
   user1 = await User.create({ name: 'user', email: 'a@a.com', password: '123456' })
@@ -15,6 +15,7 @@ beforeEach(async () => {
   session1 = signSync(user1.id)
   session2 = signSync(user2.id)
   adminSession = signSync(admin.id)
+  lists = await Lists.create({ personell: [user1.id] })
 })
 
 test('GET /users 200 (admin)', async () => {
@@ -96,6 +97,15 @@ test('GET /users/:id 404', async () => {
   const { status } = await request(app())
     .get(apiRoot + '/123456789098765432123456')
   expect(status).toBe(404)
+})
+
+test('GET /users/:id/lists 200', async () => {
+  const { status, body } = await request(app())
+    .get(`${apiRoot}/${user1.id}/lists`)
+    .query({ access_token: session1 })
+  expect(status).toBe(200)
+  expect(typeof body).toBe('object')
+  // expect(body.id).toBe(user1.id)
 })
 
 test('POST /users 201 (master)', async () => {
